@@ -9,7 +9,7 @@ environment ENV.fetch("RAILS_ENV") { "development" }
 pidfile ENV.fetch("PIDFILE") { "tmp/pids/server.pid" }
 port ENV.fetch("PORT") { 3000 }
 worker_timeout 3600 if is_development
-workers ENV.fetch("WEB_CONCURRENCY") { is_development ? 1 : 4 }
+workers ENV.fetch("WEB_CONCURRENCY") { is_development ? 0 : 4 }
 
 preload_app! if is_development
 

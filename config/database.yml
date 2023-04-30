@@ -1,0 +1,23 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+
+development:
+  <<: *default
+  database: piazza_development
+  username: postgres
+  password: postgres
+  host: localhost
+  port: 5434
+
+test:
+  <<: *default
+  database: piazza_test
+  username: postgres
+  password: postgres
+  host: localhost
+  port: 5434
+
+production:
+  url: <%= ENV["MY_APP_DATABASE_URL"] %>

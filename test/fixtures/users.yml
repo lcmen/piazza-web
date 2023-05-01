@@ -1,0 +1,9 @@
+one:
+  name: User 1
+  email: user1@example.com
+  password_digest: MyString
+
+two:
+  name: User 2
+  email: user2@example.com
+  password_digest: MyString

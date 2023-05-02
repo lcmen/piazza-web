@@ -1,0 +1,5 @@
+en:
+  activerecord:
+    errors:
+      messages:
+        too_short: must be at least %{count} characters long

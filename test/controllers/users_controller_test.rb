@@ -5,8 +5,8 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     get sign_up_path
     assert_response :success
     assert_difference ["User.count", "Organization.count"], 1 do
-      params = { user: { name: "John", email: "john@example.com", password: "password" } }
-      post sign_up_path, params:
+      params = { name: "John", email: "john@example.com", password: "password", password_confirmation: "password" }
+      post sign_up_path, params: { user: params }
     end
     assert_redirected_to root_path
     follow_redirect!
@@ -17,8 +17,8 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     get sign_up_path
     assert_response :success
     assert_no_difference ["User.count", "Organization.count"] do
-      params = { user: { name: "John", email: "john@example.com", password: "pass" } }
-      post sign_up_path, params:
+      params = { name: "John", email: "john@example.com", password: "password", password_confirmation: "wrong" }
+      post sign_up_path, params: { user: params }
     end
     assert_response :unprocessable_entity
   end

@@ -20,6 +20,11 @@
         <%= f.password_field :password, class: 'input' %>
       </div>
 
+      <div class="block">
+        <%= f.label :password_confirmation, class: 'label' %>
+        <%= f.password_field :password_confirmation, class: 'input' %>
+      </div>
+
       <%= f.submit t('.sign_up'), class: 'button is-primary is-large is-align-self-flex-end mt-3 mb-3' %>
     <% end %>
   </layout-column>

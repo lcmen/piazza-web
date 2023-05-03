@@ -13,6 +13,7 @@ class User < ApplicationRecord
   validates :email, format: { with: URI::MailTo::EMAIL_REGEXP }, uniqueness: { case_sensitive: false }
   validates :name, presence: true
   validates :password, length: { minimum: 8 }, presence: true
+  validates :password_confirmation, presence: true
 
   def email=(value)
     super(value.downcase.strip)

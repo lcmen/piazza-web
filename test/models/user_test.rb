@@ -2,7 +2,7 @@ require "test_helper"
 
 class UserTest < ActiveSupport::TestCase
   test "requires name" do
-    user = User.new(name: "", email: "user@example.com", password: "password")
+    user = User.new(name: "", email: "user@example.com", password: "password", password_confirmation: "password")
     assert_not user.valid?
 
     user.name = "John"
@@ -10,7 +10,7 @@ class UserTest < ActiveSupport::TestCase
   end
 
   test "requires email" do
-    user = User.new(name: "John", email: "", password: "password")
+    user = User.new(name: "John", email: "", password: "password", password_confirmation: "password")
     assert_not user.valid?
 
     user.email = "invalid"
@@ -21,7 +21,7 @@ class UserTest < ActiveSupport::TestCase
   end
 
   test "requires unique email" do
-    user = User.new(name: "John", email: "user1@example.com", password: "password")
+    user = User.new(name: "John", email: "user1@example.com", password: "password", password_confirmation: "password")
     assert_not user.valid?
 
     user.email = "user@example.com"
@@ -29,20 +29,20 @@ class UserTest < ActiveSupport::TestCase
   end
 
   test "strips spaces from email and name" do
-    user = User.new(name: " John ", email: " john@example.com ")
+    user = User.new(name: " John ", email: " john@example.com ", password: "password", password_confirmation: "password")
     assert_equal "John", user.name
     assert_equal "john@example.com", user.email
   end
 
   test "requires password at least 8 characters" do
-    user = User.new(name: "John", email: "john@example.com", password: "")
+    user = User.new(name: "John", email: "john@example.com")
     assert_not user.valid?
 
-    user.password = "password"
+    user.password = user.password_confirmation = "password"
     assert user.valid?
 
     max_length = ActiveModel::SecurePassword::MAX_PASSWORD_LENGTH_ALLOWED
-    user.password = "a" * (max_length + 1)
+    user.password = user.password_confirmation = "a" * (max_length + 1)
     assert_not user.valid?
   end
 end

@@ -8,6 +8,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
       params = { name: "John", email: "john@example.com", password: "password", password_confirmation: "password" }
       post sign_up_path, params: { user: params }
     end
+    assert_not_empty cookies[:login]
     assert_redirected_to root_path
     follow_redirect!
     assert_select ".notification.is-success", text: I18n.t('users.create.welcome', name: "John")
@@ -20,6 +21,8 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
       params = { name: "John", email: "john@example.com", password: "password", password_confirmation: "wrong" }
       post sign_up_path, params: { user: params }
     end
+    assert_nil cookies[:login]
     assert_response :unprocessable_entity
+    assert_template :new
   end
 end

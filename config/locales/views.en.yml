@@ -1,4 +1,12 @@
 en:
+  sessions:
+    new:
+      title: Login to Piazza
+      login: Login
+    create:
+      flash:
+        success: You're logged in
+        failure: The email or password was incorrect. Please try again.
   users:
     new:
       title: Sign up for Piazza

@@ -1,3 +1,5 @@
 class ApplicationController < ActionController::Base
-  add_flash_types :success
+  include Authentication
+
+  add_flash_types :danger, :success
 end

@@ -4,6 +4,10 @@ require "rails/all"
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
+if defined?(Rails::Server) && Rails.env.development?
+  require "debug/open_nonstop"
+end
+
 module Piazza
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.

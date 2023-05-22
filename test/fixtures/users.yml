@@ -1,9 +1,9 @@
-one:
-  name: User 1
-  email: user1@example.com
-  password_digest: MyString
+jerry:
+  name: Jerry
+  email: jerry@acme.com
+  password_digest: <%= BCrypt::Password.create("password") %>
 
-two:
-  name: User 2
-  email: user2@example.com
-  password_digest: MyString
+george:
+  name: George
+  email: george@acme.com
+  password_digest: <%= BCrypt::Password.create("password") %>

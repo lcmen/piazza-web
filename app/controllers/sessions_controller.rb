@@ -15,6 +15,11 @@ class SessionsController < ApplicationController
     end
   end
 
+  def destroy
+    Current.login&.destroy
+    redirect_to root_path, success: t('.flash.success'), status: :see_other
+  end
+
   private
 
   def session_params

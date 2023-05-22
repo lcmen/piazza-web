@@ -21,4 +21,14 @@ class SessionsControllerTest < ActionDispatch::IntegrationTest
     assert_response :unprocessable_entity
     assert_template :new
   end
+
+  test "logout" do
+    login(@user)
+
+    assert_difference("@user.logins.count", -1) do
+      logout
+    end
+
+    assert_redirected_to root_path
+  end
 end

@@ -3,6 +3,7 @@ services:
     name: piazza-web
     env: ruby
     plan: free
+    region: frankfurt
     numInstances: 1
     buildCommand: bin/build
     startCommand: bundle exec puma -C config/puma.rb
@@ -21,4 +22,5 @@ services:
 databases:
   - name: piazza-db
     plan: free
+    region: frankfurt
     postgresMajorVersion: 14

@@ -1,6 +1,8 @@
 module AuthenticationHelper
-  def login(user, password = 'password')
-    post login_path, params: { user: { email: user.email, password: } }
+  def login(user, password = 'password', remember_me:)
+    params = { email: user.email, password: }
+    params[:remember_me] = "true" if remember_me
+    post login_path, params: { user: params }
   end
 
   def logout

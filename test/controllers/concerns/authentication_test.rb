@@ -29,7 +29,7 @@ class AuthenticationTest < ActionDispatch::IntegrationTest
 
   test "authenticated requests" do
     @user.logins.destroy_all
-    login(@user)
+    login(@user, remember_me: false)
 
     get edit_authentication_test_path
     assert_response :ok
@@ -44,7 +44,7 @@ class AuthenticationTest < ActionDispatch::IntegrationTest
   end
 
   test "skipping authentication" do
-    login(@user)
+    login(@user, remember_me: false)
 
     get authentication_test_path
     assert_response :ok
@@ -56,7 +56,7 @@ class AuthenticationTest < ActionDispatch::IntegrationTest
     assert_response :ok
     assert_equal "User: ", response.body
 
-    login(@user)
+    login(@user, remember_me: false)
     get new_authentication_test_path
     assert_response :ok
     assert_equal "User: #{@user.id}", response.body

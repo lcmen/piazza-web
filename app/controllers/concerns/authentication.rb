@@ -48,7 +48,11 @@ module Authentication
     nil
   end
 
-  def remember(login)
-    cookies.encrypted.permanent[:login] = { value: login.to_h }
+  def remember(login, infinitely = false)
+    if infinitely
+      cookies.encrypted.permanent[:login] = { value: login.to_h }
+    else
+      cookies.encrypted[:login] = { value: login.to_h }
+    end
   end
 end

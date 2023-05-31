@@ -10,7 +10,7 @@ class UsersController < ApplicationController
     if @user.save
       Organization.create(members: [@user])
       remember(@user.logins.create)
-      redirect_to root_path, status: :see_other, success: t('.welcome', name: @user.name)
+      redirect_to root_path, status: :see_other, success: t('.flash.success', name: @user.name)
     else
       render :new, status: :unprocessable_entity
     end

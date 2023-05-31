@@ -7,7 +7,6 @@ class SessionsController < ApplicationController
 
   def create
     if login = User.login(**session_params.to_h.symbolize_keys)
-      binding.irb
       remember(login, params.dig(:user, :remember_me))
       redirect_to root_path, success: t('.flash.success'), status: :see_other
     else

@@ -11,7 +11,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     assert_not_empty cookies[:login]
     assert_redirected_to root_path
     follow_redirect!
-    assert_select ".notification.is-success", text: I18n.t('users.create.welcome', name: "John")
+    assert_select ".notification.is-success", text: I18n.t('users.create.flash.success', name: "John")
   end
 
   test "failed signup" do
